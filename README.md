@@ -14,7 +14,7 @@
 ## Install for Deno
 
 ```typescript
-npm install --save-dev ts-essentials
+import type {Primitive} from 'https://deno.land/x/ts_essentials/mod.ts'
 ```
 ## Install
 
