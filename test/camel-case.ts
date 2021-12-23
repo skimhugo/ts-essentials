@@ -1,5 +1,8 @@
-import { AssertTrue as Assert, IsExact } from "conditional-type-checks";
-import { CamelCase, DeepCamelCaseProperties } from "../lib";
+import {
+  AssertTrue as Assert,
+  IsExact,
+} from "https://deno.land/x/conditional_type_checks/mod.ts";
+import { CamelCase, DeepCamelCaseProperties } from "../lib/mod.ts";
 
 declare const symbol: unique symbol;
 
@@ -63,8 +66,12 @@ function testCamelCase() {
 
 function testSnakeToCamelCase() {
   type cases = [
-    Assert<IsExact<DeepCamelCaseProperties<SnakeCaseExample>, CamelCaseExample>>,
+    Assert<
+      IsExact<DeepCamelCaseProperties<SnakeCaseExample>, CamelCaseExample>
+    >,
     // doesn't hurt calling it twice
-    Assert<IsExact<DeepCamelCaseProperties<CamelCaseExample>, CamelCaseExample>>,
+    Assert<
+      IsExact<DeepCamelCaseProperties<CamelCaseExample>, CamelCaseExample>
+    >,
   ];
 }

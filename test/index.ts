@@ -1,57 +1,61 @@
 /**
  * This file contains a lot of unused functions as it's only typechecked.
  */
-import { AssertTrue as Assert, IsExact, AssertFalse } from "conditional-type-checks";
+import {
+  AssertFalse,
+  AssertTrue as Assert,
+  IsExact,
+} from "https://deno.land/x/conditional_type_checks/mod.ts";
 
 import {
+  ArrayOrSingle,
   assert,
+  AsyncOrSync,
+  AsyncOrSyncType,
+  Awaited,
   Buildable,
   DeepNonNullable,
   DeepNullable,
   DeepPartial,
   DeepReadonly,
   DeepRequired,
+  DeepUndefinable,
   DeepWritable,
-  StrictExtract,
   Dictionary,
   DictionaryValues,
+  ElementOf,
+  Exact,
+  Head,
+  IsAny,
+  isExact,
+  IsNever,
+  IsTuple,
+  IsUnknown,
   MarkOptional,
   MarkRequired,
   Merge,
   MergeN,
+  Newable,
   NonEmptyObject,
   NonNever,
   noop,
+  OmitProperties,
+  Opaque,
+  OptionalKeys,
+  PickKeys,
   PickProperties,
   ReadonlyKeys,
+  RequiredKeys,
   SafeDictionary,
+  StrictExtract,
+  StrictOmit,
+  Tail,
   Tuple,
+  Writable,
   WritableKeys,
   XOR,
-  Head,
-  Tail,
-  Exact,
-  ElementOf,
-  DeepUndefinable,
-  OptionalKeys,
-  RequiredKeys,
-  Opaque,
-  AsyncOrSyncType,
-  AsyncOrSync,
-  Awaited,
-  Newable,
-  PickKeys,
-  IsTuple,
-  Writable,
-  StrictOmit,
-  OmitProperties,
-  isExact,
-  IsUnknown,
-  IsNever,
-  ArrayOrSingle,
-  IsAny,
-} from "../lib";
-import { ComplexNestedPartial, ComplexNestedRequired } from "./types";
+} from "../lib/mod.ts";
+import { ComplexNestedPartial, ComplexNestedRequired } from "./types.ts";
 
 function testDictionary() {
   type cases = [
@@ -88,7 +92,9 @@ function testDictionaryValues() {
     Assert<IsExact<DictionaryValues<Dictionary<boolean, "a" | "b">>, boolean>>,
     Assert<IsExact<DictionaryValues<Dictionary<bigint, "a" | "b">>, bigint>>,
     Assert<IsExact<DictionaryValues<Dictionary<symbol, "a" | "b">>, symbol>>,
-    Assert<IsExact<DictionaryValues<Dictionary<undefined, "a" | "b">>, undefined>>,
+    Assert<
+      IsExact<DictionaryValues<Dictionary<undefined, "a" | "b">>, undefined>
+    >,
     Assert<IsExact<DictionaryValues<Dictionary<null, "a" | "b">>, null>>,
     Assert<IsExact<DictionaryValues<Dictionary<string, 1 | 2>>, string>>,
     Assert<IsExact<DictionaryValues<Dictionary<number, 1 | 2>>, number>>,
@@ -97,34 +103,109 @@ function testDictionaryValues() {
     Assert<IsExact<DictionaryValues<Dictionary<symbol, 1 | 2>>, symbol>>,
     Assert<IsExact<DictionaryValues<Dictionary<undefined, 1 | 2>>, undefined>>,
     Assert<IsExact<DictionaryValues<Dictionary<null, 1 | 2>>, null>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<string>>, string | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<number>>, number | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<boolean>>, boolean | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<bigint>>, bigint | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<symbol>>, symbol | undefined>>,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<string>>, string | undefined>
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<number>>, number | undefined>
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<boolean>>, boolean | undefined>
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<bigint>>, bigint | undefined>
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<symbol>>, symbol | undefined>
+    >,
     Assert<IsExact<DictionaryValues<SafeDictionary<undefined>>, undefined>>,
     Assert<IsExact<DictionaryValues<SafeDictionary<null>>, null | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<string, "a" | "b">>, string | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<number, "a" | "b">>, number | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<boolean, "a" | "b">>, boolean | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<bigint, "a" | "b">>, bigint | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<symbol, "a" | "b">>, symbol | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<undefined, "a" | "b">>, undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<null, "a" | "b">>, null | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<string, 1 | 2>>, string | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<number, 1 | 2>>, number | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<boolean, 1 | 2>>, boolean | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<bigint, 1 | 2>>, bigint | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<symbol, 1 | 2>>, symbol | undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<undefined, 1 | 2>>, undefined>>,
-    Assert<IsExact<DictionaryValues<SafeDictionary<null, 1 | 2>>, null | undefined>>,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<string, "a" | "b">>,
+        string | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<number, "a" | "b">>,
+        number | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<boolean, "a" | "b">>,
+        boolean | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<bigint, "a" | "b">>,
+        bigint | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<symbol, "a" | "b">>,
+        symbol | undefined
+      >
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<undefined, "a" | "b">>, undefined>
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<null, "a" | "b">>,
+        null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<string, 1 | 2>>,
+        string | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<number, 1 | 2>>,
+        number | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<boolean, 1 | 2>>,
+        boolean | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<bigint, 1 | 2>>,
+        bigint | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DictionaryValues<SafeDictionary<symbol, 1 | 2>>,
+        symbol | undefined
+      >
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<undefined, 1 | 2>>, undefined>
+    >,
+    Assert<
+      IsExact<DictionaryValues<SafeDictionary<null, 1 | 2>>, null | undefined>
+    >,
   ];
 }
 
 function testSafeDictionary() {
   type cases = [
-    Assert<IsExact<SafeDictionary<number>, { [x: string]: number | undefined }>>,
-    Assert<IsExact<Pick<SafeDictionary<number>, "foo">, { foo: number | undefined }>>,
+    Assert<
+      IsExact<SafeDictionary<number>, { [x: string]: number | undefined }>
+    >,
+    Assert<
+      IsExact<Pick<SafeDictionary<number>, "foo">, { foo: number | undefined }>
+    >,
     Assert<IsExact<SafeDictionary<number>["foo"], number | undefined>>,
     Assert<IsExact<SafeDictionary<boolean, number>[42], boolean | undefined>>,
   ];
@@ -157,7 +238,11 @@ type ComplexNestedUndefinable = {
     date: Date | undefined;
     func: (() => string) | undefined;
     array: { bar: number | undefined }[];
-    tuple: [string | undefined, number | undefined, { good: boolean | undefined } | undefined];
+    tuple: [
+      string | undefined,
+      number | undefined,
+      { good: boolean | undefined } | undefined,
+    ];
     set: Set<{ name: string | undefined }>;
     map: Map<string | undefined, { name: string | undefined }>;
     promise: Promise<{ foo: string | undefined; bar: number | undefined }>;
@@ -169,41 +254,48 @@ type ComplexNestedNullableOrUndefined = {
   nested: {
     date: Date | null | undefined;
     func: (() => string) | null | undefined;
-    array: ({ bar: number | null | undefined } | null | undefined)[] | null | undefined;
+    array:
+      | ({ bar: number | null | undefined } | null | undefined)[]
+      | null
+      | undefined;
     tuple:
-      | [string | null | undefined, number | null | undefined, { good: boolean | null | undefined } | null | undefined]
+      | [
+        string | null | undefined,
+        number | null | undefined,
+        { good: boolean | null | undefined } | null | undefined,
+      ]
       | null
       | undefined;
     set:
       | Set<
-          | {
-              name: string | null | undefined;
-            }
-          | null
-          | undefined
-        >
+        | {
+          name: string | null | undefined;
+        }
+        | null
+        | undefined
+      >
       | null
       | undefined;
     map:
       | Map<
-          string | null | undefined,
-          | {
-              name: string | null | undefined;
-            }
-          | null
-          | undefined
-        >
+        string | null | undefined,
+        | {
+          name: string | null | undefined;
+        }
+        | null
+        | undefined
+      >
       | null
       | undefined;
     promise:
       | Promise<
-          | {
-              foo: string | null | undefined;
-              bar: number | null | undefined;
-            }
-          | null
-          | undefined
-        >
+        | {
+          foo: string | null | undefined;
+          bar: number | null | undefined;
+        }
+        | null
+        | undefined
+      >
       | null
       | undefined;
   };
@@ -261,33 +353,69 @@ function testDeepPartial() {
     Assert<IsExact<DeepPartial<Error>, Error>>,
     Assert<IsExact<DeepPartial<ExtendedError>, Error & { code: string }>>,
     Assert<IsExact<DeepPartial<RegExp>, RegExp>>,
-    Assert<IsExact<DeepPartial<ExtendedRegExp>, RegExp & { caseSensitive: true }>>,
-    Assert<IsExact<DeepPartial<Map<string, boolean>>, Map<string, boolean>>>,
-    Assert<IsExact<DeepPartial<Map<string, { a: number }>>, Map<string, { a?: number }>>>,
-    Assert<IsExact<DeepPartial<ReadonlyMap<string, boolean>>, ReadonlyMap<string, boolean>>>,
-    Assert<IsExact<DeepPartial<ReadonlyMap<string, { checked: boolean }>>, ReadonlyMap<string, { checked?: boolean }>>>,
-    Assert<IsExact<DeepPartial<WeakMap<{ key: string }, boolean>>, WeakMap<{ key?: string }, boolean>>>,
     Assert<
-      IsExact<DeepPartial<WeakMap<{ key: string }, { value: boolean }>>, WeakMap<{ key?: string }, { value?: boolean }>>
+      IsExact<DeepPartial<ExtendedRegExp>, RegExp & { caseSensitive: true }>
+    >,
+    Assert<IsExact<DeepPartial<Map<string, boolean>>, Map<string, boolean>>>,
+    Assert<
+      IsExact<
+        DeepPartial<Map<string, { a: number }>>,
+        Map<string, { a?: number }>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepPartial<ReadonlyMap<string, boolean>>,
+        ReadonlyMap<string, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepPartial<ReadonlyMap<string, { checked: boolean }>>,
+        ReadonlyMap<string, { checked?: boolean }>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepPartial<WeakMap<{ key: string }, boolean>>,
+        WeakMap<{ key?: string }, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepPartial<WeakMap<{ key: string }, { value: boolean }>>,
+        WeakMap<{ key?: string }, { value?: boolean }>
+      >
     >,
     Assert<IsExact<DeepPartial<Set<string>>, Set<string>>>,
     Assert<IsExact<DeepPartial<Set<number[]>>, Set<number[]>>>,
     Assert<IsExact<DeepPartial<ReadonlySet<string>>, ReadonlySet<string>>>,
     Assert<IsExact<DeepPartial<[]>, []>>,
     Assert<IsExact<DeepPartial<never[]>, undefined[]>>,
-    Assert<IsExact<DeepPartial<[1, 2, 3]>, [(1 | undefined)?, (2 | undefined)?, (3 | undefined)?]>>,
-    Assert<IsExact<DeepPartial<readonly number[]>, readonly (number | undefined)[]>>,
+    Assert<
+      IsExact<
+        DeepPartial<[1, 2, 3]>,
+        [(1 | undefined)?, (2 | undefined)?, (3 | undefined)?]
+      >
+    >,
+    Assert<
+      IsExact<DeepPartial<readonly number[]>, readonly (number | undefined)[]>
+    >,
     Assert<IsExact<DeepPartial<Array<number>>, Array<number>>>,
     Assert<IsExact<DeepPartial<Promise<number>>, Promise<number>>>,
     Assert<
       IsExact<
-        DeepPartial<Promise<{ api: () => { play: () => void; pause: () => void } }>>,
+        DeepPartial<
+          Promise<{ api: () => { play: () => void; pause: () => void } }>
+        >,
         Promise<{ api?: () => { play: () => void; pause: () => void } }>
       >
     >,
     Assert<
       IsExact<
-        DeepPartial<{ readonly obj: unknown; readonly arr: readonly unknown[] }>,
+        DeepPartial<
+          { readonly obj: unknown; readonly arr: readonly unknown[] }
+        >,
         {
           readonly obj?: unknown | undefined;
           readonly arr?: readonly unknown[] | undefined;
@@ -313,16 +441,36 @@ function testDeepNullable() {
     Assert<IsExact<DeepNullable<Date>, Date | null>>,
     Assert<IsExact<DeepNullable<Error>, Error | null>>,
     Assert<IsExact<DeepNullable<RegExp>, RegExp | null>>,
-    Assert<IsExact<DeepNullable<Map<string, boolean>>, Map<string | null, boolean | null>>>,
-    Assert<IsExact<DeepNullable<Map<string, { a: number }>>, Map<string | null, { a: number | null }>>>,
-    Assert<IsExact<DeepNullable<ReadonlyMap<string, boolean>>, ReadonlyMap<string | null, boolean | null>>>,
+    Assert<
+      IsExact<
+        DeepNullable<Map<string, boolean>>,
+        Map<string | null, boolean | null>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNullable<Map<string, { a: number }>>,
+        Map<string | null, { a: number | null }>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNullable<ReadonlyMap<string, boolean>>,
+        ReadonlyMap<string | null, boolean | null>
+      >
+    >,
     Assert<
       IsExact<
         DeepNullable<ReadonlyMap<string, { checked: boolean }>>,
         ReadonlyMap<string | null, { checked: boolean | null }>
       >
     >,
-    Assert<IsExact<DeepNullable<WeakMap<{ key: string }, boolean>>, WeakMap<{ key: string | null }, boolean | null>>>,
+    Assert<
+      IsExact<
+        DeepNullable<WeakMap<{ key: string }, boolean>>,
+        WeakMap<{ key: string | null }, boolean | null>
+      >
+    >,
     Assert<
       IsExact<
         DeepNullable<WeakMap<{ key: string }, { value: boolean }>>,
@@ -331,21 +479,34 @@ function testDeepNullable() {
     >,
     Assert<IsExact<DeepNullable<Set<string>>, Set<string | null>>>,
     Assert<IsExact<DeepNullable<Set<number[]>>, Set<(number | null)[]>>>,
-    Assert<IsExact<DeepNullable<ReadonlySet<string>>, ReadonlySet<string | null>>>,
+    Assert<
+      IsExact<DeepNullable<ReadonlySet<string>>, ReadonlySet<string | null>>
+    >,
     Assert<IsExact<DeepNullable<[]>, []>>,
     Assert<IsExact<DeepNullable<never[]>, null[]>>,
     Assert<IsExact<DeepNullable<[1, 2, 3]>, [1 | null, 2 | null, 3 | null]>>,
-    Assert<IsExact<DeepNullable<readonly number[]>, readonly (number | null)[]>>,
+    Assert<
+      IsExact<DeepNullable<readonly number[]>, readonly (number | null)[]>
+    >,
     Assert<IsExact<DeepNullable<Array<number>>, Array<number | null>>>,
     Assert<IsExact<DeepNullable<Promise<number>>, Promise<number | null>>>,
     Assert<
       IsExact<
-        DeepNullable<Promise<{ api: () => { play: () => void; pause: () => void } }>>,
+        DeepNullable<
+          Promise<{ api: () => { play: () => void; pause: () => void } }>
+        >,
         Promise<{ api: (() => { play: () => void; pause: () => void }) | null }>
       >
     >,
-    Assert<IsExact<DeepNullable<{ a: 1; b: 2; c: 3 }>, { a: 1 | null; b: 2 | null; c: 3 | null }>>,
-    Assert<IsExact<DeepNullable<{ foo: () => void }>, { foo: (() => void) | null }>>,
+    Assert<
+      IsExact<
+        DeepNullable<{ a: 1; b: 2; c: 3 }>,
+        { a: 1 | null; b: 2 | null; c: 3 | null }
+      >
+    >,
+    Assert<
+      IsExact<DeepNullable<{ foo: () => void }>, { foo: (() => void) | null }>
+    >,
     Assert<IsExact<DeepNullable<ComplexNestedRequired>, ComplexNestedNullable>>,
   ];
 }
@@ -363,11 +524,26 @@ function testDeepReadonly() {
     Assert<IsExact<DeepReadonly<Date>, Date>>,
     Assert<IsExact<DeepReadonly<Error>, Error>>,
     Assert<IsExact<DeepReadonly<RegExp>, RegExp>>,
-    Assert<IsExact<DeepReadonly<Map<string, boolean>>, ReadonlyMap<string, boolean>>>,
-    Assert<IsExact<DeepReadonly<ReadonlyMap<string, boolean>>, ReadonlyMap<string, boolean>>>,
-    Assert<IsExact<DeepReadonly<WeakMap<{ key: string }, boolean>>, WeakMap<{ key: string }, boolean>>>,
     Assert<
-      IsExact<DeepReadonly<WeakMap<{ key: string }, { value: boolean }>>, WeakMap<{ key: string }, { value: boolean }>>
+      IsExact<DeepReadonly<Map<string, boolean>>, ReadonlyMap<string, boolean>>
+    >,
+    Assert<
+      IsExact<
+        DeepReadonly<ReadonlyMap<string, boolean>>,
+        ReadonlyMap<string, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepReadonly<WeakMap<{ key: string }, boolean>>,
+        WeakMap<{ key: string }, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepReadonly<WeakMap<{ key: string }, { value: boolean }>>,
+        WeakMap<{ key: string }, { value: boolean }>
+      >
     >,
     Assert<IsExact<DeepReadonly<Set<string>>, ReadonlySet<string>>>,
     Assert<IsExact<DeepReadonly<ReadonlySet<string>>, ReadonlySet<string>>>,
@@ -432,10 +608,23 @@ function testDeepUndefinable() {
     Assert<IsExact<DeepUndefinable<Date>, Date | undefined>>,
     Assert<IsExact<DeepUndefinable<Error>, Error | undefined>>,
     Assert<IsExact<DeepUndefinable<RegExp>, RegExp | undefined>>,
-    Assert<IsExact<DeepUndefinable<Map<string, boolean>>, Map<string | undefined, boolean | undefined>>>,
-    Assert<IsExact<DeepUndefinable<Map<string, { a: number }>>, Map<string | undefined, { a: number | undefined }>>>,
     Assert<
-      IsExact<DeepUndefinable<ReadonlyMap<string, boolean>>, ReadonlyMap<string | undefined, boolean | undefined>>
+      IsExact<
+        DeepUndefinable<Map<string, boolean>>,
+        Map<string | undefined, boolean | undefined>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepUndefinable<Map<string, { a: number }>>,
+        Map<string | undefined, { a: number | undefined }>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepUndefinable<ReadonlyMap<string, boolean>>,
+        ReadonlyMap<string | undefined, boolean | undefined>
+      >
     >,
     Assert<
       IsExact<
@@ -456,23 +645,58 @@ function testDeepUndefinable() {
       >
     >,
     Assert<IsExact<DeepUndefinable<Set<string>>, Set<string | undefined>>>,
-    Assert<IsExact<DeepUndefinable<Set<number[]>>, Set<(number | undefined)[]>>>,
-    Assert<IsExact<DeepUndefinable<ReadonlySet<string>>, ReadonlySet<string | undefined>>>,
-    Assert<IsExact<DeepUndefinable<[]>, []>>,
-    Assert<IsExact<DeepUndefinable<never[]>, undefined[]>>,
-    Assert<IsExact<DeepUndefinable<[1, 2, 3]>, [1 | undefined, 2 | undefined, 3 | undefined]>>,
-    Assert<IsExact<DeepUndefinable<readonly number[]>, readonly (number | undefined)[]>>,
-    Assert<IsExact<DeepUndefinable<Array<number>>, Array<number | undefined>>>,
-    Assert<IsExact<DeepUndefinable<Promise<number>>, Promise<number | undefined>>>,
+    Assert<
+      IsExact<DeepUndefinable<Set<number[]>>, Set<(number | undefined)[]>>
+    >,
     Assert<
       IsExact<
-        DeepUndefinable<Promise<{ api: () => { play: () => void; pause: () => void } }>>,
-        Promise<{ api: (() => { play: () => void; pause: () => void }) | undefined }>
+        DeepUndefinable<ReadonlySet<string>>,
+        ReadonlySet<string | undefined>
       >
     >,
-    Assert<IsExact<DeepUndefinable<{ a: 1; b: 2; c: 3 }>, { a: 1 | undefined; b: 2 | undefined; c: 3 | undefined }>>,
-    Assert<IsExact<DeepUndefinable<{ foo: () => void }>, { foo: (() => void) | undefined }>>,
-    Assert<IsExact<DeepUndefinable<ComplexNestedRequired>, ComplexNestedUndefinable>>,
+    Assert<IsExact<DeepUndefinable<[]>, []>>,
+    Assert<IsExact<DeepUndefinable<never[]>, undefined[]>>,
+    Assert<
+      IsExact<
+        DeepUndefinable<[1, 2, 3]>,
+        [1 | undefined, 2 | undefined, 3 | undefined]
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepUndefinable<readonly number[]>,
+        readonly (number | undefined)[]
+      >
+    >,
+    Assert<IsExact<DeepUndefinable<Array<number>>, Array<number | undefined>>>,
+    Assert<
+      IsExact<DeepUndefinable<Promise<number>>, Promise<number | undefined>>
+    >,
+    Assert<
+      IsExact<
+        DeepUndefinable<
+          Promise<{ api: () => { play: () => void; pause: () => void } }>
+        >,
+        Promise<
+          { api: (() => { play: () => void; pause: () => void }) | undefined }
+        >
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepUndefinable<{ a: 1; b: 2; c: 3 }>,
+        { a: 1 | undefined; b: 2 | undefined; c: 3 | undefined }
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepUndefinable<{ foo: () => void }>,
+        { foo: (() => void) | undefined }
+      >
+    >,
+    Assert<
+      IsExact<DeepUndefinable<ComplexNestedRequired>, ComplexNestedUndefinable>
+    >,
   ];
 }
 
@@ -488,141 +712,344 @@ function testDeepNonNullable() {
     Assert<IsExact<DeepNonNullable<Date | null | undefined>, Date>>,
     Assert<IsExact<DeepNonNullable<Error | null | undefined>, Error>>,
     Assert<IsExact<DeepNonNullable<RegExp | null | undefined>, RegExp>>,
-    Assert<IsExact<DeepNonNullable<Map<string | null | undefined, boolean | null | undefined>>, Map<string, boolean>>>,
     Assert<
       IsExact<
-        DeepNonNullable<Map<string | null | undefined, { a: number | null | undefined }>>,
+        DeepNonNullable<
+          Map<string | null | undefined, boolean | null | undefined>
+        >,
+        Map<string, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<
+          Map<string | null | undefined, { a: number | null | undefined }>
+        >,
         Map<string, { a: number }>
       >
     >,
     Assert<
       IsExact<
-        DeepNonNullable<ReadonlyMap<string | null | undefined, boolean | null | undefined>>,
+        DeepNonNullable<
+          ReadonlyMap<string | null | undefined, boolean | null | undefined>
+        >,
         ReadonlyMap<string, boolean>
       >
     >,
     Assert<
       IsExact<
-        DeepNonNullable<ReadonlyMap<string | null | undefined, { checked: boolean | null | undefined }>>,
+        DeepNonNullable<
+          ReadonlyMap<
+            string | null | undefined,
+            { checked: boolean | null | undefined }
+          >
+        >,
         ReadonlyMap<string, { checked: boolean }>
       >
     >,
     Assert<
       IsExact<
-        DeepNonNullable<WeakMap<{ key: string | null | undefined }, boolean | null | undefined>>,
+        DeepNonNullable<
+          WeakMap<
+            { key: string | null | undefined },
+            boolean | null | undefined
+          >
+        >,
         WeakMap<{ key: string }, boolean>
       >
     >,
     Assert<
       IsExact<
-        DeepNonNullable<WeakMap<{ key: string | null | undefined }, { value: boolean | null | undefined }>>,
+        DeepNonNullable<
+          WeakMap<
+            { key: string | null | undefined },
+            { value: boolean | null | undefined }
+          >
+        >,
         WeakMap<{ key: string }, { value: boolean }>
       >
     >,
-    Assert<IsExact<DeepNonNullable<Set<string | null | undefined>>, Set<string>>>,
-    Assert<IsExact<DeepNonNullable<Set<(number | null | undefined)[]>>, Set<number[]>>>,
-    Assert<IsExact<DeepNonNullable<ReadonlySet<string | null | undefined>>, ReadonlySet<string>>>,
-    Assert<IsExact<DeepNonNullable<[] | null | undefined>, []>>,
-    Assert<IsExact<DeepNonNullable<(null | undefined)[]>, never[]>>,
-    Assert<IsExact<DeepNonNullable<[1 | null | undefined, 2 | null | undefined, 3 | null | undefined]>, [1, 2, 3]>>,
-    Assert<IsExact<DeepNonNullable<readonly (number | null | undefined)[]>, readonly number[]>>,
-    Assert<IsExact<DeepNonNullable<Array<number | null | undefined>>, Array<number>>>,
-    Assert<IsExact<DeepNonNullable<Promise<number | null | undefined>>, Promise<number>>>,
+    Assert<
+      IsExact<DeepNonNullable<Set<string | null | undefined>>, Set<string>>
+    >,
     Assert<
       IsExact<
-        DeepNonNullable<Promise<{ api: (() => { play: () => void; pause: () => void }) | null | undefined }>>,
+        DeepNonNullable<Set<(number | null | undefined)[]>>,
+        Set<number[]>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<ReadonlySet<string | null | undefined>>,
+        ReadonlySet<string>
+      >
+    >,
+    Assert<IsExact<DeepNonNullable<[] | null | undefined>, []>>,
+    Assert<IsExact<DeepNonNullable<(null | undefined)[]>, never[]>>,
+    Assert<
+      IsExact<
+        DeepNonNullable<
+          [1 | null | undefined, 2 | null | undefined, 3 | null | undefined]
+        >,
+        [1, 2, 3]
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<readonly (number | null | undefined)[]>,
+        readonly number[]
+      >
+    >,
+    Assert<
+      IsExact<DeepNonNullable<Array<number | null | undefined>>, Array<number>>
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<Promise<number | null | undefined>>,
+        Promise<number>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<
+          Promise<
+            {
+              api:
+                | (() => { play: () => void; pause: () => void })
+                | null
+                | undefined;
+            }
+          >
+        >,
         Promise<{ api: () => { play: () => void; pause: () => void } }>
       >
     >,
     Assert<
       IsExact<
-        DeepNonNullable<{ a: 1 | null | undefined; b: 2 | null | undefined; c: 3 | null | undefined }>,
+        DeepNonNullable<
+          {
+            a: 1 | null | undefined;
+            b: 2 | null | undefined;
+            c: 3 | null | undefined;
+          }
+        >,
         { a: 1; b: 2; c: 3 }
       >
     >,
-    Assert<IsExact<DeepNonNullable<{ foo: (() => void) | null | undefined }>, { foo: () => void }>>,
-    Assert<IsExact<DeepNonNullable<{ a?: 1; b?: 2 }>, { a?: 1 | undefined; b?: 2 | undefined }>>,
-    Assert<IsExact<DeepNonNullable<ComplexNestedNullableOrUndefined>, ComplexNestedRequired>>,
+    Assert<
+      IsExact<
+        DeepNonNullable<{ foo: (() => void) | null | undefined }>,
+        { foo: () => void }
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<{ a?: 1; b?: 2 }>,
+        { a?: 1 | undefined; b?: 2 | undefined }
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepNonNullable<ComplexNestedNullableOrUndefined>,
+        ComplexNestedRequired
+      >
+    >,
   ];
 }
 
 function testDeepRequired() {
   type cases = [
-    Assert<IsExact<DeepRequired<number | null | undefined>, number | null | undefined>>,
-    Assert<IsExact<DeepRequired<string | null | undefined>, string | null | undefined>>,
-    Assert<IsExact<DeepRequired<boolean | null | undefined>, boolean | null | undefined>>,
-    Assert<IsExact<DeepRequired<bigint | null | undefined>, bigint | null | undefined>>,
-    Assert<IsExact<DeepRequired<symbol | null | undefined>, symbol | null | undefined>>,
-    Assert<IsExact<DeepRequired<undefined | null>, undefined | null>>,
-    Assert<IsExact<DeepRequired<Function | null | undefined>, Function | null | undefined>>,
-    Assert<IsExact<DeepRequired<Date | null | undefined>, Date | null | undefined>>,
-    Assert<IsExact<DeepRequired<Error | null | undefined>, Required<Error> | null | undefined>>,
-    Assert<IsExact<DeepRequired<RegExp | null | undefined>, RegExp | null | undefined>>,
     Assert<
       IsExact<
-        DeepRequired<Map<string | null | undefined, boolean | null | undefined>>,
+        DeepRequired<number | null | undefined>,
+        number | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<string | null | undefined>,
+        string | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<boolean | null | undefined>,
+        boolean | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<bigint | null | undefined>,
+        bigint | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<symbol | null | undefined>,
+        symbol | null | undefined
+      >
+    >,
+    Assert<IsExact<DeepRequired<undefined | null>, undefined | null>>,
+    Assert<
+      IsExact<
+        DeepRequired<Function | null | undefined>,
+        Function | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<DeepRequired<Date | null | undefined>, Date | null | undefined>
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<Error | null | undefined>,
+        Required<Error> | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<RegExp | null | undefined>,
+        RegExp | null | undefined
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<
+          Map<string | null | undefined, boolean | null | undefined>
+        >,
         Map<string | null | undefined, boolean | null | undefined>
       >
     >,
     Assert<
       IsExact<
-        DeepRequired<Map<string | null | undefined, { a: number | null | undefined }>>,
+        DeepRequired<
+          Map<string | null | undefined, { a: number | null | undefined }>
+        >,
         Map<string | null | undefined, { a: number | null | undefined }>
       >
     >,
     Assert<
       IsExact<
-        DeepRequired<ReadonlyMap<string | null | undefined, boolean | null | undefined>>,
+        DeepRequired<
+          ReadonlyMap<string | null | undefined, boolean | null | undefined>
+        >,
         ReadonlyMap<string | null | undefined, boolean | null | undefined>
       >
     >,
     Assert<
       IsExact<
-        DeepRequired<ReadonlyMap<string | null | undefined, { checked: boolean | null | undefined }>>,
-        ReadonlyMap<string | null | undefined, { checked: boolean | null | undefined }>
+        DeepRequired<
+          ReadonlyMap<
+            string | null | undefined,
+            { checked: boolean | null | undefined }
+          >
+        >,
+        ReadonlyMap<
+          string | null | undefined,
+          { checked: boolean | null | undefined }
+        >
       >
     >,
     Assert<
       IsExact<
-        DeepRequired<WeakMap<{ key: string | null | undefined }, boolean | null | undefined>>,
+        DeepRequired<
+          WeakMap<
+            { key: string | null | undefined },
+            boolean | null | undefined
+          >
+        >,
         WeakMap<{ key: string | null | undefined }, boolean | null | undefined>
       >
     >,
     Assert<
       IsExact<
-        DeepRequired<WeakMap<{ key: string | null | undefined }, { value: boolean | null | undefined }>>,
-        WeakMap<{ key: string | null | undefined }, { value: boolean | null | undefined }>
+        DeepRequired<
+          WeakMap<
+            { key: string | null | undefined },
+            { value: boolean | null | undefined }
+          >
+        >,
+        WeakMap<
+          { key: string | null | undefined },
+          { value: boolean | null | undefined }
+        >
       >
     >,
-    Assert<IsExact<DeepRequired<Set<string | null | undefined>>, Set<string | null | undefined>>>,
-    Assert<IsExact<DeepRequired<Set<(number | null | undefined)[]>>, Set<(number | null)[]>>>,
-    Assert<IsExact<DeepRequired<ReadonlySet<string | null | undefined>>, ReadonlySet<string | null | undefined>>>,
+    Assert<
+      IsExact<
+        DeepRequired<Set<string | null | undefined>>,
+        Set<string | null | undefined>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<Set<(number | null | undefined)[]>>,
+        Set<(number | null)[]>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<ReadonlySet<string | null | undefined>>,
+        ReadonlySet<string | null | undefined>
+      >
+    >,
     Assert<IsExact<DeepRequired<[] | null | undefined>, [] | null | undefined>>,
     Assert<IsExact<DeepRequired<(null | undefined)[]>, null[]>>,
     Assert<
       IsExact<
-        DeepRequired<[1 | null | undefined, 2 | null | undefined, 3 | null | undefined]>,
+        DeepRequired<
+          [1 | null | undefined, 2 | null | undefined, 3 | null | undefined]
+        >,
         [1 | null | undefined, 2 | null | undefined, 3 | null | undefined]
       >
     >,
     Assert<
       IsExact<
-        DeepRequired<[(1 | null | undefined)?, (2 | null | undefined)?, (3 | null | undefined)?]>,
+        DeepRequired<
+          [
+            (1 | null | undefined)?,
+            (2 | null | undefined)?,
+            (3 | null | undefined)?,
+          ]
+        >,
         [1 | null, 2 | null, 3 | null]
       >
     >,
-    Assert<IsExact<DeepRequired<readonly (number | null | undefined)[]>, readonly (number | null)[]>>,
-    Assert<IsExact<DeepRequired<Array<number | null | undefined>>, Array<number | null>>>,
-    Assert<IsExact<DeepRequired<Promise<number | null | undefined>>, Promise<number | null | undefined>>>,
     Assert<
       IsExact<
-        DeepRequired<Promise<{ api: (() => { play: () => void; pause: () => void }) | null | undefined }>>,
+        DeepRequired<readonly (number | null | undefined)[]>,
+        readonly (number | null)[]
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<Array<number | null | undefined>>,
+        Array<number | null>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<Promise<number | null | undefined>>,
+        Promise<number | null | undefined>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepRequired<
+          Promise<
+            {
+              api:
+                | (() => { play: () => void; pause: () => void })
+                | null
+                | undefined;
+            }
+          >
+        >,
         Promise<{
           api:
             | (() => {
-                play: () => void;
-                pause: () => void;
-              })
+              play: () => void;
+              pause: () => void;
+            })
             | null
             | undefined;
         }>
@@ -630,11 +1057,26 @@ function testDeepRequired() {
     >,
     Assert<
       IsExact<
-        DeepRequired<{ a: 1 | null | undefined; b: 2 | null | undefined; c: 3 | null | undefined }>,
-        { a: 1 | null | undefined; b: 2 | null | undefined; c: 3 | null | undefined }
+        DeepRequired<
+          {
+            a: 1 | null | undefined;
+            b: 2 | null | undefined;
+            c: 3 | null | undefined;
+          }
+        >,
+        {
+          a: 1 | null | undefined;
+          b: 2 | null | undefined;
+          c: 3 | null | undefined;
+        }
       >
     >,
-    Assert<IsExact<DeepRequired<{ foo: (() => void) | null | undefined }>, { foo: (() => void) | null | undefined }>>,
+    Assert<
+      IsExact<
+        DeepRequired<{ foo: (() => void) | null | undefined }>,
+        { foo: (() => void) | null | undefined }
+      >
+    >,
     Assert<IsExact<DeepRequired<{ a?: 1; b?: 2 }>, { a: 1; b: 2 }>>,
     Assert<IsExact<DeepRequired<ComplexNestedPartial>, ComplexNestedRequired>>,
   ];
@@ -666,10 +1108,20 @@ function testDeepWritable() {
     Assert<IsExact<DeepWritable<Error>, Error>>,
     Assert<IsExact<DeepWritable<RegExp>, RegExp>>,
     Assert<IsExact<DeepWritable<Map<string, boolean>>, Map<string, boolean>>>,
-    Assert<IsExact<DeepWritable<ReadonlyMap<string, boolean>>, Map<string, boolean>>>,
-    Assert<IsExact<DeepWritable<WeakMap<{ key: string }, boolean>>, WeakMap<{ key: string }, boolean>>>,
     Assert<
-      IsExact<DeepWritable<WeakMap<{ key: string }, { value: boolean }>>, WeakMap<{ key: string }, { value: boolean }>>
+      IsExact<DeepWritable<ReadonlyMap<string, boolean>>, Map<string, boolean>>
+    >,
+    Assert<
+      IsExact<
+        DeepWritable<WeakMap<{ key: string }, boolean>>,
+        WeakMap<{ key: string }, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        DeepWritable<WeakMap<{ key: string }, { value: boolean }>>,
+        WeakMap<{ key: string }, { value: boolean }>
+      >
     >,
     Assert<IsExact<DeepWritable<Set<string>>, Set<string>>>,
     Assert<IsExact<DeepWritable<ReadonlySet<string>>, Set<string>>>,
@@ -678,16 +1130,28 @@ function testDeepWritable() {
     Assert<IsExact<DeepWritable<readonly number[]>, number[]>>,
     Assert<IsExact<DeepWritable<ReadonlyArray<number>>, Array<number>>>,
     Assert<IsExact<DeepWritable<Promise<number>>, Promise<number>>>,
-    Assert<IsExact<DeepWritable<{ readonly a: 1; readonly b: 2; readonly c: 3 }>, { a: 1; b: 2; c: 3 }>>,
+    Assert<
+      IsExact<
+        DeepWritable<{ readonly a: 1; readonly b: 2; readonly c: 3 }>,
+        { a: 1; b: 2; c: 3 }
+      >
+    >,
     Assert<IsExact<DeepWritable<{ foo: () => void }>, { foo: () => void }>>,
     Assert<
       IsExact<
-        DeepWritable<{ readonly obj: unknown; readonly arr: readonly unknown[] }>,
+        DeepWritable<
+          { readonly obj: unknown; readonly arr: readonly unknown[] }
+        >,
         { obj: unknown; arr: unknown[] }
       >
     >,
     Assert<IsExact<DeepWritable<ComplexNestedReadonly>, ComplexNestedRequired>>,
-    Assert<IsExact<DeepWritable<DeepReadonly<ComplexNestedRequired>>, ComplexNestedRequired>>,
+    Assert<
+      IsExact<
+        DeepWritable<DeepReadonly<ComplexNestedRequired>>,
+        ComplexNestedRequired
+      >
+    >,
     Assert<IsExact<DeepWritable<ComplexNestedRequired>, ComplexNestedRequired>>,
   ];
 
@@ -722,19 +1186,39 @@ function testBuildable() {
     Assert<IsExact<Buildable<Error>, Error>>,
     Assert<IsExact<Buildable<RegExp>, RegExp>>,
     Assert<IsExact<Buildable<Map<string, boolean>>, Map<string, boolean>>>,
-    Assert<IsExact<Buildable<ReadonlyMap<string, boolean>>, Map<string, boolean>>>,
-    Assert<IsExact<Buildable<WeakMap<{ key: string }, boolean>>, WeakMap<{ key: string }, boolean>>>,
     Assert<
-      IsExact<Buildable<WeakMap<{ key: string }, { value: boolean }>>, WeakMap<{ key?: string }, { value?: boolean }>>
+      IsExact<Buildable<ReadonlyMap<string, boolean>>, Map<string, boolean>>
+    >,
+    Assert<
+      IsExact<
+        Buildable<WeakMap<{ key: string }, boolean>>,
+        WeakMap<{ key: string }, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        Buildable<WeakMap<{ key: string }, { value: boolean }>>,
+        WeakMap<{ key?: string }, { value?: boolean }>
+      >
     >,
     Assert<IsExact<Buildable<Set<string>>, Set<string>>>,
     Assert<IsExact<Buildable<ReadonlySet<string>>, Set<string>>>,
     Assert<IsExact<Buildable<readonly []>, []>>,
-    Assert<IsExact<Buildable<readonly [1, 2, 3]>, [(1 | undefined)?, (2 | undefined)?, (3 | undefined)?]>>,
+    Assert<
+      IsExact<
+        Buildable<readonly [1, 2, 3]>,
+        [(1 | undefined)?, (2 | undefined)?, (3 | undefined)?]
+      >
+    >,
     Assert<IsExact<Buildable<readonly number[]>, number[]>>,
     Assert<IsExact<Buildable<ReadonlyArray<number>>, Array<number>>>,
     Assert<IsExact<Buildable<Promise<number>>, Promise<number>>>,
-    Assert<IsExact<Buildable<{ readonly a: 1; readonly b: 2; readonly c: 3 }>, { a?: 1; b?: 2; c?: 3 }>>,
+    Assert<
+      IsExact<
+        Buildable<{ readonly a: 1; readonly b: 2; readonly c: 3 }>,
+        { a?: 1; b?: 2; c?: 3 }
+      >
+    >,
     Assert<IsExact<Buildable<{ foo: () => void }>, { foo?: () => void }>>,
     Assert<
       IsExact<
@@ -745,7 +1229,12 @@ function testBuildable() {
         }
       >
     >,
-    Assert<IsExact<Buildable<DeepReadonly<ComplexNestedRequired>>, ComplexNestedPartial>>,
+    Assert<
+      IsExact<
+        Buildable<DeepReadonly<ComplexNestedRequired>>,
+        ComplexNestedPartial
+      >
+    >,
     Assert<IsExact<Buildable<ComplexNestedRequired>, ComplexNestedPartial>>,
     Assert<IsExact<Buildable<ComplexNestedReadonly>, ComplexNestedPartial>>,
   ];
@@ -771,11 +1260,25 @@ function testStrictOmit() {
     Assert<IsExact<StrictOmit<Date, never>, Date>>,
     Assert<IsExact<StrictOmit<Error, never>, Error>>,
     Assert<IsExact<StrictOmit<RegExp, never>, RegExp>>,
-    Assert<IsExact<StrictOmit<Map<string, boolean>, never>, Map<string, boolean>>>,
-    Assert<IsExact<StrictOmit<ReadonlyMap<string, boolean>, never>, ReadonlyMap<string, boolean>>>,
-    Assert<IsExact<StrictOmit<WeakMap<{ key: string }, boolean>, never>, WeakMap<{ key: string }, boolean>>>,
+    Assert<
+      IsExact<StrictOmit<Map<string, boolean>, never>, Map<string, boolean>>
+    >,
+    Assert<
+      IsExact<
+        StrictOmit<ReadonlyMap<string, boolean>, never>,
+        ReadonlyMap<string, boolean>
+      >
+    >,
+    Assert<
+      IsExact<
+        StrictOmit<WeakMap<{ key: string }, boolean>, never>,
+        WeakMap<{ key: string }, boolean>
+      >
+    >,
     Assert<IsExact<StrictOmit<Set<string>, never>, Set<string>>>,
-    Assert<IsExact<StrictOmit<ReadonlySet<string>, never>, ReadonlySet<string>>>,
+    Assert<
+      IsExact<StrictOmit<ReadonlySet<string>, never>, ReadonlySet<string>>
+    >,
     Assert<IsExact<StrictOmit<Promise<number>, never>, Promise<number>>>,
     Assert<IsExact<StrictOmit<{}, never>, {}>>,
     Assert<IsExact<StrictOmit<{ a: 1 }, never>, { a: 1 }>>,
@@ -830,7 +1333,9 @@ function testStrictExtract() {
     Assert<IsExact<StrictExtract<Animal, { type: "cat" | "dog" }>, Cat | Dog>>,
     // @ts-expect-error
     StrictExtract<Animal, "cat" | "dog" | "mouse">,
-    Assert<IsExact<StrictExtract<Animal, { type: "cat" | "dog" | "mouse" }>, Animal>>,
+    Assert<
+      IsExact<StrictExtract<Animal, { type: "cat" | "dog" | "mouse" }>, Animal>
+    >,
   ];
 }
 
@@ -839,18 +1344,75 @@ function testOmitProperties() {
     Assert<IsExact<OmitProperties<{}, never>, {}>>,
     Assert<IsExact<OmitProperties<{ a: 1 }, never>, { a: 1 }>>,
     Assert<IsExact<OmitProperties<{ a?: 1 }, never>, { a?: 1 }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, number>, { b?: "2"; c: false }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, number | undefined>, { b?: "2"; c: false }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, string>, { a: 1; b?: "2"; c: false }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, string | undefined>, { a: 1; c: false }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, boolean>, { a: 1; b?: "2" }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, boolean | undefined>, { a: 1; b?: "2" }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, undefined>, { a: 1; b?: "2"; c: false }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, boolean | string>, { a: 1; b?: "2" }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, number | boolean>, { b?: "2" }>>,
-    Assert<IsExact<OmitProperties<{ a: 1; b?: "2"; c: false }, number | string>, { b?: "2"; c: false }>>,
-    Assert<IsExact<OmitProperties<{ a: string; b: number[] }, any[]>, { a: string }>>,
-    Assert<IsExact<OmitProperties<{ a: string; b: number }, any[]>, { a: string; b: number }>>,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, number>,
+        { b?: "2"; c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, number | undefined>,
+        { b?: "2"; c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, string>,
+        { a: 1; b?: "2"; c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, string | undefined>,
+        { a: 1; c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, boolean>,
+        { a: 1; b?: "2" }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, boolean | undefined>,
+        { a: 1; b?: "2" }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, undefined>,
+        { a: 1; b?: "2"; c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, boolean | string>,
+        { a: 1; b?: "2" }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, number | boolean>,
+        { b?: "2" }
+      >
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: 1; b?: "2"; c: false }, number | string>,
+        { b?: "2"; c: false }
+      >
+    >,
+    Assert<
+      IsExact<OmitProperties<{ a: string; b: number[] }, any[]>, { a: string }>
+    >,
+    Assert<
+      IsExact<
+        OmitProperties<{ a: string; b: number }, any[]>,
+        { a: string; b: number }
+      >
+    >,
   ];
 }
 
@@ -859,17 +1421,59 @@ function testPickProperties() {
     Assert<IsExact<PickProperties<{}, never>, {}>>,
     Assert<IsExact<PickProperties<{ a: 1 }, never>, {}>>,
     Assert<IsExact<PickProperties<{ a?: 1 }, never>, {}>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, number>, { a: 1 }>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, number | undefined>, { a: 1 }>>,
+    Assert<
+      IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, number>, { a: 1 }>
+    >,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, number | undefined>,
+        { a: 1 }
+      >
+    >,
     Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, string>, {}>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, string | undefined>, { b?: "2" }>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, boolean>, { c: false }>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, boolean | undefined>, { c: false }>>,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, string | undefined>,
+        { b?: "2" }
+      >
+    >,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, boolean>,
+        { c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, boolean | undefined>,
+        { c: false }
+      >
+    >,
     Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, undefined>, {}>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, boolean | string>, { c: false }>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, number | boolean>, { a: 1; c: false }>>,
-    Assert<IsExact<PickProperties<{ a: 1; b?: "2"; c: false }, number | string>, { a: 1 }>>,
-    Assert<IsExact<PickProperties<{ a: string; b: number[] }, any[]>, { b: number[] }>>,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, boolean | string>,
+        { c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, number | boolean>,
+        { a: 1; c: false }
+      >
+    >,
+    Assert<
+      IsExact<
+        PickProperties<{ a: 1; b?: "2"; c: false }, number | string>,
+        { a: 1 }
+      >
+    >,
+    Assert<
+      IsExact<
+        PickProperties<{ a: string; b: number[] }, any[]>,
+        { b: number[] }
+      >
+    >,
     Assert<IsExact<PickProperties<{ a: string; b: number }, any[]>, {}>>,
   ];
 }
@@ -885,7 +1489,12 @@ function testOptionalKeys() {
     // @ts-expect-error converts to BigInt and gets its optional keys
     Assert<IsExact<OptionalKeys<bigint>, never>>,
     // wtf?
-    Assert<IsExact<OptionalKeys<symbol>, string | ((hint: string) => symbol) | (() => string) | (() => symbol)>>,
+    Assert<
+      IsExact<
+        OptionalKeys<symbol>,
+        string | ((hint: string) => symbol) | (() => string) | (() => symbol)
+      >
+    >,
     Assert<IsExact<OptionalKeys<undefined>, never>>,
     Assert<IsExact<OptionalKeys<null>, never>>,
     Assert<IsExact<OptionalKeys<Function>, never>>,
@@ -915,7 +1524,12 @@ function testRequiredKeys() {
     Assert<IsExact<RequiredKeys<string>, never>>,
     Assert<IsExact<RequiredKeys<boolean>, keyof Boolean>>,
     Assert<IsExact<RequiredKeys<bigint>, keyof BigInt>>,
-    Assert<IsExact<RequiredKeys<symbol>, typeof Symbol.toPrimitive | typeof Symbol.toStringTag>>,
+    Assert<
+      IsExact<
+        RequiredKeys<symbol>,
+        typeof Symbol.toPrimitive | typeof Symbol.toStringTag
+      >
+    >,
     Assert<IsExact<RequiredKeys<undefined>, never>>,
     Assert<IsExact<RequiredKeys<null>, never>>,
     Assert<IsExact<RequiredKeys<Function>, keyof Function>>,
@@ -991,7 +1605,9 @@ function testMarkRequired() {
     optional2?: boolean;
   };
 
-  type Test = Assert<IsExact<MarkRequired<TestType, "required2" | "optional1">, ExpectedType>>;
+  type Test = Assert<
+    IsExact<MarkRequired<TestType, "required2" | "optional1">, ExpectedType>
+  >;
 }
 
 function testMarkOptional() {
@@ -1008,27 +1624,49 @@ function testMarkOptional() {
     optional2?: boolean;
   };
 
-  type Test = Assert<IsExact<MarkOptional<TestType, "required1">, ExpectedType>>;
+  type Test = Assert<
+    IsExact<MarkOptional<TestType, "required1">, ExpectedType>
+  >;
 }
 
 function testMerge() {
   type cases = [
     Assert<IsExact<Merge<{}, { a: string }>, { a: string }>>,
     Assert<IsExact<Merge<{ a: string }, {}>, { a: string }>>,
-    Assert<IsExact<Merge<{ a: number; b: string }, { a: string }>, { a: string; b: string }>>,
+    Assert<
+      IsExact<
+        Merge<{ a: number; b: string }, { a: string }>,
+        { a: string; b: string }
+      >
+    >,
   ];
 }
 
 function testMergeN() {
   type cases = [
-    Assert<IsExact<MergeN<[{ a: number; b: string; c: boolean }]>, { a: number; b: string; c: boolean }>>,
     Assert<
       IsExact<
-        MergeN<[{ a: number; b: string; c: boolean }, { b: number; c: string; d: boolean }]>,
+        MergeN<[{ a: number; b: string; c: boolean }]>,
+        { a: number; b: string; c: boolean }
+      >
+    >,
+    Assert<
+      IsExact<
+        MergeN<
+          [
+            { a: number; b: string; c: boolean },
+            { b: number; c: string; d: boolean },
+          ]
+        >,
         { a: number; b: number; c: string; d: boolean }
       >
     >,
-    Assert<IsExact<MergeN<[{ a: number }, { a: string }, { a: boolean }]>, { a: boolean }>>,
+    Assert<
+      IsExact<
+        MergeN<[{ a: number }, { a: string }, { a: boolean }]>,
+        { a: boolean }
+      >
+    >,
   ];
 }
 
@@ -1071,7 +1709,11 @@ function testXOR() {
   type Expected1 = { a: string; b?: never } | { a: number; b: boolean };
 
   type Actual2 = XOR<TestType1, TestType3>;
-  type Expected2 = { a: string; c?: never; d?: never } | { a?: never; c: number; d: boolean };
+  type Expected2 = { a: string; c?: never; d?: never } | {
+    a?: never;
+    c: number;
+    d: boolean;
+  };
 
   type Test1 = Assert<IsExact<Actual1, Expected1>>;
   type Test2 = Assert<IsExact<Actual2, Expected2>>;
@@ -1079,7 +1721,18 @@ function testXOR() {
 
 function testNoop() {
   const x: void = noop();
-  const y: void = noop(false, 0, "", {}, [], null, undefined, Promise.resolve(), new Error(), noop);
+  const y: void = noop(
+    false,
+    0,
+    "",
+    {},
+    [],
+    null,
+    undefined,
+    Promise.resolve(),
+    new Error(),
+    noop,
+  );
   const z: Promise<void> = Promise.resolve("foo").then(noop);
   const callback: (_: number) => void = noop;
 }
@@ -1118,8 +1771,12 @@ type Assignable<T, U> = U extends T ? true : false;
 function testOpaque() {
   type t1 = Assert<IsExact<Assignable<number, Opaque<number, "a">>, true>>;
   type t2 = Assert<IsExact<Assignable<Opaque<number, "a">, number>, false>>;
-  type t3 = Assert<IsExact<Assignable<Opaque<number, "a">, Opaque<number, "b">>, false>>;
-  type t4 = Assert<IsExact<Assignable<Opaque<number, "a">, Opaque<number, "a">>, true>>;
+  type t3 = Assert<
+    IsExact<Assignable<Opaque<number, "a">, Opaque<number, "b">>, false>
+  >;
+  type t4 = Assert<
+    IsExact<Assignable<Opaque<number, "a">, Opaque<number, "a">>, true>
+  >;
   type t5 = Assert<IsExact<Opaque<"a", string>, never>>; // should blow on mismatched order
 }
 
@@ -1154,9 +1811,18 @@ function testIsTuple() {
     Assert<IsExact<IsTuple<[1, 2, 3, 4, 5]>, [1, 2, 3, 4, 5]>>,
     Assert<IsExact<IsTuple<[1, 2, 3, 4, 5, 6]>, [1, 2, 3, 4, 5, 6]>>,
     Assert<IsExact<IsTuple<[1, 2, 3, 4, 5, 6, 7]>, [1, 2, 3, 4, 5, 6, 7]>>,
-    Assert<IsExact<IsTuple<[1, 2, 3, 4, 5, 6, 7, 8]>, [1, 2, 3, 4, 5, 6, 7, 8]>>,
-    Assert<IsExact<IsTuple<[1, 2, 3, 4, 5, 6, 7, 8, 9]>, [1, 2, 3, 4, 5, 6, 7, 8, 9]>>,
-    Assert<IsExact<IsTuple<[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]>, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]>>,
+    Assert<
+      IsExact<IsTuple<[1, 2, 3, 4, 5, 6, 7, 8]>, [1, 2, 3, 4, 5, 6, 7, 8]>
+    >,
+    Assert<
+      IsExact<IsTuple<[1, 2, 3, 4, 5, 6, 7, 8, 9]>, [1, 2, 3, 4, 5, 6, 7, 8, 9]>
+    >,
+    Assert<
+      IsExact<
+        IsTuple<[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]>,
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      >
+    >,
     Assert<IsExact<IsTuple<readonly number[]>, never>>,
     Assert<IsExact<IsTuple<{ length: 3 }>, never>>,
   ];
@@ -1288,8 +1954,15 @@ function testArrayOrSingle() {
     Assert<IsExact<ArrayOrSingle<string>, string | string[]>>,
     Assert<IsExact<ArrayOrSingle<1>, 1 | 1[]>>,
     Assert<IsExact<ArrayOrSingle<"1">, "1" | "1"[]>>,
-    Assert<IsExact<ArrayOrSingle<string | number>, string | number | (string | number)[]>>,
-    Assert<IsExact<ArrayOrSingle<{ a: number }>, { a: number } | { a: number }[]>>,
+    Assert<
+      IsExact<
+        ArrayOrSingle<string | number>,
+        string | number | (string | number)[]
+      >
+    >,
+    Assert<
+      IsExact<ArrayOrSingle<{ a: number }>, { a: number } | { a: number }[]>
+    >,
     Assert<IsExact<typeof numbers1, number[]>>,
     Assert<IsExact<typeof numbers2, number[]>>,
     Assert<IsExact<typeof strings1, string[]>>,

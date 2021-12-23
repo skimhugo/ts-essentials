@@ -10,7 +10,12 @@
     <a href="https://codechecks.io"><img src="https://raw.githubusercontent.com/codechecks/docs/master/images/badges/badge-default.svg?sanitize=true" alt="codechecks.io"></a>
   </p>
 </p>
+## this project is fork from :https://github.com/krzkaczor/ts-essentials
+## Install for Deno
 
+```typescript
+npm install --save-dev ts-essentials
+```
 ## Install
 
 ```sh
@@ -30,64 +35,54 @@ If you use any [functions](https://github.com/krzkaczor/ts-essentials/blob/maste
 
 `ts-essentials` is a set of high-quality, useful TypeScript types that make writing type-safe code easier.
 
-- [Install](#Install)
-- [What's inside?](#Whats-inside)
-  - [Basic](#Basic)
-  - [Dictionaries](#Dictionaries)
+- [this project is fork from :https://github.com/krzkaczor/ts-essentials](#this-project-is-fork-from-httpsgithubcomkrzkaczorts-essentials)
+- [Install for Deno](#install-for-deno)
+- [Install](#install)
+- [What's inside?](#whats-inside)
+  - [Basic](#basic)
+  - [Dictionaries](#dictionaries)
   - [Type checkers](#type-checkers)
-    - `IsUnknown`
-    - `IsNever`
-    - `IsAny`
-  - [Deep\* wrapper types](#Deep-wrapper-types)
-    - DeepPartial
-    - DeepRequired
-    - DeepReadonly
-    - DeepNonNullable
-    - DeepNullable
-    - DeepUndefinable
+  - [Deep\* wrapper types](#deep-wrapper-types)
     - [Difference between `DeepRequired` and `DeepNonNullable`](#difference-between-deeprequired-and-deepnonnullable)
-  - [Literal types](https://github.com/krzkaczor/ts-essentials/tree/master/lib/literal-types#literal-types)
-    - CamelCase
-  - [Writable & DeepWritable](#Writable)
-  - [Buildable](#Buildable)
-  - [Omit](#Omit)
-  - [StrictOmit](#StrictOmit)
-    - [Comparison between `Omit` and `StrictOmit`](#Comparison-between-Omit-and-StrictOmit)
-  - [StrictExtract](#StrictExtract)
-    - [Comparison between `Extract` and `StrictExtract`](#Comparison-between-Extract-and-StrictExtract)
-  - [DeepOmit](#DeepOmit)
-  - [DeepPick](#DeepPick)
-  - [OmitProperties](#OmitProperties)
-  - [PickProperties](#PickProperties)
-  - [NonNever](#NonNever)
-  - [Merge](#Merge)
-  - [MergeN](#MergeN)
-  - [MarkRequired](#MarkRequired)
-  - [MarkOptional](#MarkOptional)
-  - [ReadonlyKeys](#ReadonlyKeys)
-  - [WritableKeys](#WritableKeys)
-  - [OptionalKeys](#OptionalKeys)
-  - [RequiredKeys](#RequiredKeys)
+  - [Writable](#writable)
+  - [Buildable](#buildable)
+  - [Omit](#omit)
+  - [StrictOmit](#strictomit)
+    - [Comparison between `Omit` and `StrictOmit`](#comparison-between-omit-and-strictomit)
+  - [StrictExtract](#strictextract)
+    - [Comparison between `Extract` and `StrictExtract`](#comparison-between-extract-and-strictextract)
+  - [DeepOmit](#deepomit)
+  - [DeepPick](#deeppick)
+  - [OmitProperties](#omitproperties)
+  - [PickProperties](#pickproperties)
+  - [NonNever](#nonnever)
+  - [NonEmptyObject](#nonemptyobject)
+  - [Merge](#merge)
+  - [MergeN](#mergen)
+  - [MarkRequired](#markrequired)
+  - [MarkOptional](#markoptional)
+  - [ReadonlyKeys](#readonlykeys)
+  - [WritableKeys](#writablekeys)
+  - [OptionalKeys](#optionalkeys)
+  - [RequiredKeys](#requiredkeys)
   - [PickKeys](#pickkeys)
-  - [UnionToIntersection](#UnionToIntersection)
-  - [Opaque types](#Opaque-types)
-  - [Tuple constraint](#Tuple-constraint)
-  - [Exhaustive switch cases](#Exhaustive-switch-cases)
-  - [ValueOf type](#ValueOf-type)
-  - [ElementOf type](#ElementOf-type)
-  - [ArrayOrSingle](#ArrayOrSingle)
-  - [AsyncOrSync type](#AsyncOrSync-type)
+  - [UnionToIntersection](#uniontointersection)
+  - [Opaque types](#opaque-types)
+  - [Tuple constraint](#tuple-constraint)
+  - [Exhaustive switch cases](#exhaustive-switch-cases)
+  - [ValueOf type](#valueof-type)
+  - [ElementOf type](#elementof-type)
+  - [ArrayOrSingle](#arrayorsingle)
+  - [AsyncOrSync type](#asyncorsync-type)
   - [Awaited type](#awaited-type)
   - [Newable](#newable)
-  - [Assertions](#Assertions)
-  - [Exact](#Exact)
-  - [isExact](#isExact)
-  - [XOR](#XOR)
+  - [Assertions](#assertions)
+  - [Exact](#exact)
+  - [isExact](#isexact)
+  - [XOR](#xor)
   - [Functional type essentials](#functional-type-essentials)
-    - Head
-    - Tail
-- [TypeScript dependency table](#TypeScript-dependency-table)
-- [Contributors](#Contributors)
+- [TypeScript dependency table](#typescript-dependency-table)
+- [Contributors](#contributors)
 
 ### Basic
 

@@ -1,4 +1,4 @@
-import { ComplexNestedRequired } from "./types";
+import { ComplexNestedRequired } from "./types.ts";
 
 export const complexNestedRequired: ComplexNestedRequired = {
   simple: 1,

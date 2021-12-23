@@ -1,6 +1,6 @@
-import { DeepOmit } from "../lib";
-import { complexNestedRequired, complexNestedUndefined } from "./const";
-import { ComplexNestedPartial, ComplexNestedRequired } from "./types";
+import { DeepOmit } from "../lib/mod.ts";
+import { complexNestedRequired, complexNestedUndefined } from "./const.ts";
+import { ComplexNestedPartial, ComplexNestedRequired } from "./types.ts";
 
 function testDeepOmitInRequiredObject() {
   let obj1: DeepOmit<ComplexNestedRequired, {}>;
@@ -48,7 +48,10 @@ function testDeepOmitInRequiredObject() {
     obj3 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj3 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj3 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj3 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -69,7 +72,10 @@ function testDeepOmitInRequiredObject() {
     obj3_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj3_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj3_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj3_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -90,7 +96,10 @@ function testDeepOmitInRequiredObject() {
     obj4 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj4 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj4 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj4 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -111,7 +120,10 @@ function testDeepOmitInRequiredObject() {
     obj4_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj4_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj4_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj4_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -132,7 +144,10 @@ function testDeepOmitInRequiredObject() {
     obj5 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj5 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj5 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj5 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -153,7 +168,10 @@ function testDeepOmitInRequiredObject() {
     obj5_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj5_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj5_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj5_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -174,7 +192,10 @@ function testDeepOmitInRequiredObject() {
     obj6 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj6 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj6 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj6 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -195,7 +216,10 @@ function testDeepOmitInRequiredObject() {
     obj6_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj6_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj6_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj6_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -216,7 +240,10 @@ function testDeepOmitInRequiredObject() {
     obj7 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj7 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj7 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj7 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -237,7 +264,10 @@ function testDeepOmitInRequiredObject() {
     obj7_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj7_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj7_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj7_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -258,7 +288,10 @@ function testDeepOmitInRequiredObject() {
     obj8 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj8 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj8 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj8 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -279,7 +312,10 @@ function testDeepOmitInRequiredObject() {
     obj8_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj8_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj8_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj8_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -300,7 +336,10 @@ function testDeepOmitInRequiredObject() {
     obj9 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj9 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj9 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj9 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -321,7 +360,10 @@ function testDeepOmitInRequiredObject() {
     obj9_1 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj9_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj9_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj9_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -329,7 +371,10 @@ function testDeepOmitInRequiredObject() {
       nested: { date, array, ...complexNestedRequiredNested },
     } = complexNestedRequired;
 
-    let obj10: DeepOmit<ComplexNestedRequired, { nested: { date: true; array: true } }>;
+    let obj10: DeepOmit<
+      ComplexNestedRequired,
+      { nested: { date: true; array: true } }
+    >;
     // @ts-expect-error
     obj10 = {};
     // @ts-expect-error
@@ -342,7 +387,10 @@ function testDeepOmitInRequiredObject() {
     obj10 = { simple: undefined, nested: complexNestedRequiredNested };
     // @ts-expect-error
     obj10 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj10 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj10 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 }
 
@@ -379,7 +427,10 @@ function testDeepOmitInPartialObject() {
     obj3 = { simple: undefined, nested: undefined };
     obj3 = { simple: undefined, nested: complexNestedRequiredNested };
     obj3 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj3 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj3 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -394,7 +445,10 @@ function testDeepOmitInPartialObject() {
     obj3_1 = { simple: undefined, nested: undefined };
     obj3_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj3_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj3_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj3_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -409,7 +463,10 @@ function testDeepOmitInPartialObject() {
     obj4 = { simple: undefined, nested: undefined };
     obj4 = { simple: undefined, nested: complexNestedRequiredNested };
     obj4 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj4 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj4 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -424,7 +481,10 @@ function testDeepOmitInPartialObject() {
     obj4_1 = { simple: undefined, nested: undefined };
     obj4_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj4_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj4_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj4_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -439,7 +499,10 @@ function testDeepOmitInPartialObject() {
     obj5 = { simple: undefined, nested: undefined };
     obj5 = { simple: undefined, nested: complexNestedRequiredNested };
     obj5 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj5 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj5 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -454,7 +517,10 @@ function testDeepOmitInPartialObject() {
     obj5_1 = { simple: undefined, nested: undefined };
     obj5_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj5_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj5_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj5_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -469,7 +535,10 @@ function testDeepOmitInPartialObject() {
     obj6 = { simple: undefined, nested: undefined };
     obj6 = { simple: undefined, nested: complexNestedRequiredNested };
     obj6 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj6 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj6 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -484,7 +553,10 @@ function testDeepOmitInPartialObject() {
     obj6_1 = { simple: undefined, nested: undefined };
     obj6_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj6_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj6_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj6_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -499,7 +571,10 @@ function testDeepOmitInPartialObject() {
     obj7 = { simple: undefined, nested: undefined };
     obj7 = { simple: undefined, nested: complexNestedRequiredNested };
     obj7 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj7 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj7 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -514,7 +589,10 @@ function testDeepOmitInPartialObject() {
     obj7_1 = { simple: undefined, nested: undefined };
     obj7_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj7_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj7_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj7_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -529,7 +607,10 @@ function testDeepOmitInPartialObject() {
     obj8 = { simple: undefined, nested: undefined };
     obj8 = { simple: undefined, nested: complexNestedRequiredNested };
     obj8 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj8 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj8 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -544,7 +625,10 @@ function testDeepOmitInPartialObject() {
     obj8_1 = { simple: undefined, nested: undefined };
     obj8_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj8_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj8_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj8_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -559,7 +643,10 @@ function testDeepOmitInPartialObject() {
     obj9 = { simple: undefined, nested: undefined };
     obj9 = { simple: undefined, nested: complexNestedRequiredNested };
     obj9 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj9 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj9 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -574,7 +661,10 @@ function testDeepOmitInPartialObject() {
     obj9_1 = { simple: undefined, nested: undefined };
     obj9_1 = { simple: undefined, nested: complexNestedRequiredNested };
     obj9_1 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj9_1 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj9_1 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
@@ -582,14 +672,20 @@ function testDeepOmitInPartialObject() {
       nested: { date, array, ...complexNestedRequiredNested },
     } = complexNestedRequired;
 
-    let obj10: DeepOmit<ComplexNestedPartial, { nested: { date: true; array: true } }>;
+    let obj10: DeepOmit<
+      ComplexNestedPartial,
+      { nested: { date: true; array: true } }
+    >;
     obj10 = {};
     obj10 = { simple: undefined };
     obj10 = { nested: undefined };
     obj10 = { simple: undefined, nested: undefined };
     obj10 = { simple: undefined, nested: complexNestedRequiredNested };
     obj10 = { simple: complexNestedRequired.simple, nested: undefined };
-    obj10 = { simple: complexNestedRequired.simple, nested: complexNestedRequiredNested };
+    obj10 = {
+      simple: complexNestedRequired.simple,
+      nested: complexNestedRequiredNested,
+    };
   }
 
   {
