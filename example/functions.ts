@@ -1,5 +1,5 @@
-import { UnreachableCaseError } from "../lib/functions";
-import { DummyOptions } from "./types";
+import { UnreachableCaseError } from "../lib/functions.ts";
+import { DummyOptions } from "./types.ts";
 
 // exhaustive switch cases in typescript!
 function actOnDummyOptions(options: DummyOptions): string {

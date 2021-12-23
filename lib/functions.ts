@@ -1,4 +1,4 @@
-import { Exact } from "./types";
+import { Exact } from "./types.ts";
 
 export class UnreachableCaseError extends Error {
   constructor(value: never) {
@@ -6,7 +6,10 @@ export class UnreachableCaseError extends Error {
   }
 }
 
-export function assert(condition: any, msg: string = "no additional info provided"): asserts condition {
+export function assert(
+  condition: any,
+  msg: string = "no additional info provided",
+): asserts condition {
   if (!condition) {
     throw new Error("Assertion Error: " + msg);
   }
@@ -14,8 +17,7 @@ export function assert(condition: any, msg: string = "no additional info provide
 
 export function noop(..._args: unknown[]): void {}
 
-export const isExact =
-  <ExpectedShape>() =>
+export const isExact = <ExpectedShape>() =>
   <ActualShape>(x: Exact<ActualShape, ExpectedShape>): ExpectedShape => {
     return x;
   };

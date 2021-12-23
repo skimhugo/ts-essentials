@@ -1,12 +1,12 @@
 import {
-  Dictionary,
-  DictionaryValues,
+  AsyncOrSync,
   DeepPartial,
   DeepReadonly,
-  Opaque,
   DeepRequired,
-  AsyncOrSync,
-} from "../lib/types";
+  Dictionary,
+  DictionaryValues,
+  Opaque,
+} from "../lib/types.ts";
 
 const stringDict: Dictionary<string> = {
   a: "A",
